@@ -1,48 +1,45 @@
 /* --- Google Fonts の適用 --- */
-/* 全体の基本フォント */
 body {
-    font-family: 'IBM Plex Sans JP', sans-serif;
+    /* 全体を丸みのあるポップなフォントに */
+    font-family: 'Zen Maru Gothic', sans-serif;
     line-height: 1.8;
-    color: #333;
+    color: #444;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5; /* 少し落ち着いた背景色 */
+    background-color: #fff9f0; /* 少し温かみのある背景色 */
 }
 
-/* メインコンテンツの幅制限 */
+
+/* メインコンテンツ */
 main {
-    max-width: 900px;
+    max-width: 850px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-/* --- セクションのデザイン --- */
+/* --- セクションのデザイン（さらに丸く） --- */
 section {
     background: #ffffff;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
     padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    border-top: 4px solid #3498db; /* 各カードの上部にアクセント */
+    border-radius: 20px; /* 角をさらに丸く */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 2px solid #ffcfd2; /* 柔らかい色のボーダー */
 }
 
 /* --- 見出しのデザイン --- */
-/* セクションごとの大きな見出し（しっぽり明朝） */
 h1, h2 {
-    font-family: 'Shippori Mincho', serif;
     font-weight: 700;
-    color: #2c3e50;
+    color: #ff6b6b; /* ポップな赤系 */
     margin-top: 0;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    border-bottom: 3px dotted #ffcfd2; /* 点線にしてポップさを強調 */
+    padding-bottom: 8px;
     display: block;
 }
 
-/* ゲームタイトルなど（しっぽり明朝） */
 h3 {
-    font-family: 'Shippori Mincho', serif;
     font-weight: 700;
-    color: #34495e;
+    color: #4ecdc4; /* ゲームタイトルは別色で楽しく */
     margin: 10px 0;
 }
 
@@ -51,7 +48,7 @@ h3 {
     font-family: 'Playfair Display', serif;
     font-style: italic;
     font-weight: 700;
-    color: #3498db;
+    color: #ff9f43;
     font-size: 1.1rem;
     display: block;
     margin-bottom: 5px;
@@ -59,44 +56,34 @@ h3 {
 
 /* --- 各パーツのスタイル --- */
 
-/* プロフィール詳細 (血液型など) */
-ul {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
-/* 作ったサイトのリンク */
 .site-list a {
-    color: #3498db;
+    color: #54a0ff;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s;
+    border-bottom: 1px dashed #54a0ff;
 }
 
 .site-list a:hover {
-    color: #2980b9;
-    text-decoration: underline;
+    color: #2e86de;
+    background-color: #f0f7ff;
 }
 
 /* ゲーム紹介エリア */
 .game-info {
-    background-color: #f8f9fa;
+    background-color: #f1f2f6;
     padding: 20px;
-    border-radius: 8px;
-    border-left: 5px solid #3498db;
+    border-radius: 15px;
     margin-top: 15px;
 }
 
-/* 注意書きセクション (少し目立たせる) */
+/* 注意書きセクション */
 #section11 {
-    border-top: 4px solid #e74c3c; /* 注意書きは赤系で */
+    border: 2px solid #ee5253;
 }
 
 #section11 h2 {
-    color: #c0392b;
+    color: #ee5253;
+    border-bottom: 3px dotted #ffb8b8;
 }
 
 /* 最後に一言 */
@@ -104,9 +91,5 @@ li {
     text-align: center;
     background: transparent;
     box-shadow: none;
-    border: none;
-}
-
-#section12 h2 {
     border: none;
 }
