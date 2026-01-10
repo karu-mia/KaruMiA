@@ -93,3 +93,22 @@ h3 {
     box-shadow: none;
     border: none;
 }
+
+/* --- アニメーションの共通設定 --- */
+section {
+    opacity: 0;
+    transform: translateY(30px); /* 初期位置は少し下 */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: transform, opacity;
+}
+
+/* 表示された時の状態 */
+section.is-show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 最初のセクションだけは最初から見えていても良い、という場合はここを生かす */
+#section1.is-show {
+    transition-delay: 0.2s; /* 少しだけ遅らせて出すとおしゃれ */
+}
