@@ -1,0 +1,112 @@
+/* --- Google Fonts の適用 --- */
+/* 全体の基本フォント */
+body {
+    font-family: 'IBM Plex Sans JP', sans-serif;
+    line-height: 1.8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5; /* 少し落ち着いた背景色 */
+}
+
+/* メインコンテンツの幅制限 */
+main {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- セクションのデザイン --- */
+section {
+    background: #ffffff;
+    margin-bottom: 40px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    border-top: 4px solid #3498db; /* 各カードの上部にアクセント */
+}
+
+/* --- 見出しのデザイン --- */
+/* セクションごとの大きな見出し（しっぽり明朝） */
+h1, h2 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    display: block;
+}
+
+/* ゲームタイトルなど（しっぽり明朝） */
+h3 {
+    font-family: 'Shippori Mincho', serif;
+    font-weight: 700;
+    color: #34495e;
+    margin: 10px 0;
+}
+
+/* 英語のアクセント用（Playfair Display） */
+.en-accent {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    color: #3498db;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* --- 各パーツのスタイル --- */
+
+/* プロフィール詳細 (血液型など) */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* 作ったサイトのリンク */
+.site-list a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.site-list a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* ゲーム紹介エリア */
+.game-info {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 5px solid #3498db;
+    margin-top: 15px;
+}
+
+/* 注意書きセクション (少し目立たせる) */
+#section11 {
+    border-top: 4px solid #e74c3c; /* 注意書きは赤系で */
+}
+
+#section11 h2 {
+    color: #c0392b;
+}
+
+/* 最後に一言 */
+#section12 {
+    text-align: center;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+
+#section12 h2 {
+    border: none;
+}
