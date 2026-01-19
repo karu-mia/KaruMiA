@@ -1,114 +1,388 @@
-/* --- Google Fonts の適用 --- */
+/* --- 1. 全体の設定 & オーロラ背景 --- */
 body {
-    /* 全体を丸みのあるポップなフォントに */
     font-family: 'Zen Maru Gothic', sans-serif;
     line-height: 1.8;
     color: #444;
     margin: 0;
     padding: 0;
-    background-color: #fff9f0; /* 少し温かみのある背景色 */
+    /* 動き続ける背景グラデーション */
+    background: linear-gradient(-45deg, #fff9f0, #ffedfa, #e0f7fa, #f1f8e9);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    overflow-x: hidden;
 }
 
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
 
-/* メインコンテンツ */
+/* メインコンテンツの幅 */
 main {
     max-width: 850px;
     margin: 40px auto;
     padding: 0 20px;
 }
 
-/* --- セクションのデザイン（さらに丸く） --- */
-section {
-    background: #ffffff;
-    margin-bottom: 35px;
-    padding: 30px;
-    border-radius: 20px; /* 角をさらに丸く */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    border: 2px solid #ffcfd2; /* 柔らかい色のボーダー */
+/* --- ヒーローセクション（トップの大きなエリア） --- */
+.hero {
+    height: 30vh; /* 画面の高さの60%分確保 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: transparent; /* オーロラ背景を活かす */
 }
 
-/* --- 見出しのデザイン --- */
-h1, h2 {
+.hero-title {
+    font-family: 'Playfair Display', serif; /* カッコいい英語フォント */
+    font-size: 5rem;
+    color: #ff6b6b;
+    margin: 0;
+    text-shadow: 2px 2px 0px #fff;
+    border: none; /* デフォルトのh1の線を消す */
+}
+
+.hero-sub {
+    font-size: 1.2rem;
+    color: #4ecdc4;
     font-weight: 700;
-    color: #ff6b6b; /* ポップな赤系 */
-    margin-top: 0;
-    border-bottom: 3px dotted #ffcfd2; /* 点線にしてポップさを強調 */
-    padding-bottom: 8px;
-    display: block;
+    margin-top: 10px;
 }
-
-h3 {
-    font-weight: 700;
-    color: #4ecdc4; /* ゲームタイトルは別色で楽しく */
-    margin: 10px 0;
-}
-
 /* 英語のアクセント用（Playfair Display） */
 .en-accent {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', serif; /* これを追加 */
     font-style: italic;
     font-weight: 700;
     color: #ff9f43;
-    font-size: 1.1rem;
+    font-size: 1.2rem; /* 少し大きくしてもいいかも */
     display: block;
     margin-bottom: 5px;
 }
 
-/* --- 各パーツのスタイル --- */
+/* スマホでは文字を少し小さく */
+@media (max-width: 600px) {
+    .hero-title { font-size: 3.5rem; }
+}
 
-.site-list a {
-    color: #54a0ff;
+/* --- 2. 固定ナビゲーション（すりガラス） --- */
+.top-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.top-nav a {
     text-decoration: none;
-    font-weight: bold;
-    border-bottom: 1px dashed #54a0ff;
+    color: #ff6b6b;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: 0.3s;
 }
 
-.site-list a:hover {
-    color: #2e86de;
-    background-color: #f0f7ff;
+.top-nav a:hover {
+    color: #4ecdc4;
+    transform: scale(1.1);
 }
 
-/* ゲーム紹介エリア */
-.game-info {
-    background-color: #f1f2f6;
-    padding: 20px;
-    border-radius: 15px;
-    margin-top: 15px;
+/* ホバーした時 */
+.back-to-top:hover {
+    background-color: #ff6b6b; /* ホバーで赤っぽく変わる（お好みで） */
+    transform: scale(1.1); /* 少し大きくする */
 }
 
-/* 注意書きセクション */
-#section11 {
-    border: 2px solid #ee5253;
-}
-
-#section11 h2 {
-    color: #ee5253;
-    border-bottom: 3px dotted #ffb8b8;
-}
-
-/* 最後に一言 */
-#section12 {
-    text-align: center;
-    background: transparent;
-    box-shadow: none;
-    border: none;
-}
-
-/* --- アニメーションの共通設定 --- */
+/* ナビで飛んだ時の位置調整（隠れないようにする） */
 section {
-    opacity: 0;
-    transform: translateY(30px); /* 初期位置は少し下 */
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    /* ナビの高さ（約60px〜80px）に合わせて数値を調整してね */
+    scroll-margin-top: 80px; 
+}
+/* ヒーローセクションも同様に調整 */
+.hero {
+    scroll-margin-top: 80px;
+}
+
+/* --- 3. セクションの基本デザイン --- */
+section {
+    background: rgba(255, 255, 255, 0.9);
+    margin-bottom: 35px;
+    padding: 35px;
+    border-radius: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    border: 2px solid #ffcfd2;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s, transform 0.8s;
+    opacity: 0; /* 最初は透明 */
+    transform: translateY(30px); /* 最初は少し下 */
     will-change: transform, opacity;
 }
 
-/* 表示された時の状態 */
+/* 表示された時 */
 section.is-show {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* 最初のセクションだけは最初から見えていても良い、という場合はここを生かす */
-#section1.is-show {
-    transition-delay: 0.2s; /* 少しだけ遅らせて出すとおしゃれ */
+/* セクションにマウスを載せた時 */
+section:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.15);
+}
+
+/* --- 4. 見出し（h1, h2）のデザイン --- */
+h1, h2 {
+    font-weight: 700;
+    color: #ff6b6b;
+    margin-top: 0;
+    border-bottom: 3px dotted #ffcfd2;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-weight: 700;
+    color: #4ecdc4;
+    margin: 15px 0 10px;
+}
+
+/* --- 5. セクションごとの個別デザイン --- */
+/* --- Section 1: 名前セクションの設定 --- */
+#section1 { 
+    border-color: #ff6b6b; 
+    text-align: center; 
+}
+
+/* 点線を復活させ、他のセクションと見た目を合わせる */
+#section1 h1 { 
+    font-size: 2.5rem; 
+    border-bottom: 3px dotted #ffcfd2; /* 他と同じ点線 */
+    display: block; /* inline-blockからblockに戻して横幅をいっぱいに広げる */
+    width: 100%;    /* 念のため100%を指定 */
+    margin-bottom: 25px;
+    text-align: center; /* 文字は中央のまま */
+}
+
+/* 名前（KaruMiA）のデザイン */
+#section1 p {
+    font-size: 2.2rem;     /* さらに少し大きく */
+    font-weight: 700;
+    color: #4ecdc4;
+    margin: 10px auto;     /* 中央配置 */
+    letter-spacing: 2px;
+    background: rgba(78, 205, 196, 0.1);
+    display: table;        /* 横幅を中身に合わせつつ中央に置くための魔法 */
+    padding: 15px 30px;    /* 左右余白を適正に（70pxだとスマホではみ出る） */
+    border-radius: 30px;   /* もっと丸くして可愛く */
+    white-space: nowrap;   /* 改行防止 */
+}
+
+/* スマホ用のサイズ微調整（ズレ防止） */
+@media (max-width: 600px) {
+    #section1 p {
+        font-size: 1.3rem; /* 確実に1行に収まるサイズ */
+        padding: 10px 20px; /* 余白を狭くして画面内に収める */
+        letter-spacing: 1px;
+    }
+    #section1 h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Section 2: Profile (好きなもの) */
+#section2 { border-color: #feca57; }
+#section2 h2 { color: #feca57; border-color: #ffefc2; }
+
+/* Section 3-4: Game */
+.game-section { border-color: #4ecdc4; }
+.game-info {
+    background-color: rgba(78, 205, 196, 0.05);
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px dashed #4ecdc4;
+}
+.genshin-img {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 15px;
+    margin: 10px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Section 5: Skill & Works */
+#section5 { border-color: #54a0ff; }
+#section5 h2 { color: #54a0ff; border-color: #d1e9ff; }
+.site-list a {
+    color: #54a0ff;
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 1px dashed #54a0ff;
+    transition: 0.3s;
+}
+.site-list a:hover { background: #f0f7ff; padding: 2px 5px; border-radius: 5px; }
+
+/* Section 6: Q&A (Special) */
+#section6 { border-color: #a29bfe; }
+#section6 h2 { color: #a29bfe; border-color: #e3e0ff; }
+#section6 p {
+    background: rgba(162, 155, 254, 0.05);
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+/* Section 7: Basic Info */
+#section7 { border-color: #5f27cd; }
+#section7 h2 { color: #5f27cd; border-color: #e0d4ff; }
+#section7 ul { list-style: "✨ "; padding-left: 20px; }
+
+/* Section 8: Goals */
+#section8 { border-color: #1dd1a1; }
+#section8 h2 { color: #1dd1a1; border-color: #c7fceb; }
+
+/* Section 9: Attention */
+#section9 { border-color: #ee5253; background: rgba(255, 235, 235, 0.9); }
+#section9 h2 { color: #ee5253; border-color: #ffccd0; }
+
+/* Section 10: Footer / Ending */
+#section10 {
+    text-align: center;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    opacity: 0;
+}
+#section10.is-show { opacity: 1; }
+
+/* --- 6. 共通パーツ & フッター --- */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+/* リストの余白調整 */
+ul { margin: 10px 0; padding-left: 20px; }
+li { margin-bottom: 8px; }
+
+/* --- 好きなものリストのデザイン（改行防止版） --- */
+.profile-list {
+    margin: 0;
+    padding: 0;
+}
+
+/* 項目（ラベル）の部分 */
+.profile-list dt {
+    background-color: #ffefc2;
+    color: #ff9f43;
+    display: inline-block;
+    padding: 2px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    /* --- 追加：ラベルが改行されないようにする --- */
+    white-space: nowrap; 
+}
+
+/* 答えの部分 */
+.profile-list dd {
+    margin: 0 0 20px 10px;
+    font-size: 1.1rem;
+    font-weight: 400;
+    border-left: 3px solid #ffefc2;
+    padding-left: 15px;
+    /* --- 追加：答えもできるだけ1行で表示する --- */
+    /* 長すぎて画面を突き抜けるのを防ぐため、基本はnowrapだけど
+       どうしても入り切らない時だけは自働で調整される設定にするね */
+    width: fit-content;
+    white-space: nowrap; 
+}
+
+
+/* --- ページトップに戻るボタン --- */
+.back-to-top {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 63px;
+    height: 63px;
+    background-color: #4ecdc4; /* 画像に近いエメラルドグリーン系 */
+    color: white;
+    border: none;
+    border-radius: 50%; /* まんまるにする */
+    font-size: 40px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0; /* 最初は隠す */
+    visibility: hidden; /* 最初は押せないようにする */
+    transition: all 0.3s ease; /* ふわっと出すための設定 */
+    z-index: 1000; /* ナビゲーションよりも上に表示 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ボタンが表示されている時の状態 */
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* --- フッターのデザイン --- */
+footer {
+    background-color: #f5f5f5; /* 薄い灰色 */
+    padding: 40px 0;
+    text-align: center;
+    border-top: 1px solid #ddd;
+    margin-top: 50px;
+}
+
+.footer-sns {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* アイコン同士の間隔 */
+    margin-bottom: 20px;
+}
+
+.sns-link {
+    text-decoration: none;
+    color: #666; /* 最初は少し控えめな色 */
+    display: flex;
+    flex-direction: column; /* アイコンと文字を縦に並べる */
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+/* アイコン自体の大きさ */
+.sns-link i {
+    font-size: 1.8rem;
+}
+
+/* ホバーした時の動き（色を各SNSのブランドカラーに！） */
+.x-link:hover { color: #000; transform: translateY(-5px); }
+.insta-link:hover { color: #e1306c; transform: translateY(-5px); }
+
+.copyright {
+    color: #999;
+    font-size: 0.75rem;
+    margin: 0;
 }
